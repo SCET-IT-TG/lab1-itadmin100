@@ -1,0 +1,105 @@
+// Select database (Allowed way)
+db = db.getSiblingDB("examDB");
+
+// ----------------------------
+// Exercise 1: Database & Collection Creation
+// ----------------------------
+
+db.students.insertOne({
+  name: "Aarav Patel",
+  department: "IT",
+  semester: 4,
+  mobile: 9000000001
+});
+
+db.students.insertOne({
+  name: "Ananya Shah",
+  department: "CE",
+  semester: 6,
+  mobile: 9000000002
+});
+
+// ----------------------------
+// Exercise 2: Insert Document with Multiple Fields
+// ----------------------------
+
+db.students.insertOne({
+  name: "Rohan Mehta",
+  department: "CSE",
+  semester: 5,
+  mobile: 9000000003
+});
+
+// ----------------------------
+// Exercise 3: Array of Simple Values
+// ----------------------------
+
+db.subjects.insertOne({
+  course_name: "B.Tech CSE",
+  subject_list: ["DBMS", "OS", "CN", "AI"]
+});
+
+// ----------------------------
+// Exercise 4: Array of Objects
+// ----------------------------
+
+db.faculty.insertOne({
+  department: "Computer Engineering",
+  teachers: [
+    { name: "Dr. Suresh Iyer", experience: 15 },
+    { name: "Prof. Kavita Rao", experience: 10 }
+  ]
+});
+
+// ----------------------------
+// Exercise 5: Explicit Primary Key using ObjectId()
+// ----------------------------
+
+db.students.insertOne({
+  _id: ObjectId(),
+  name: "Pooja Verma",
+  department: "IT",
+  semester: 3,
+  mobile: 9000000004
+});
+
+// ----------------------------
+// Exercise 6: Duplicate Primary Key Observation
+// ----------------------------
+
+// First insert (will succeed)
+db.students.insertOne({
+  _id: ObjectId("64abc123456789abcdef0001"),
+  name: "Kunal Joshi",
+  department: "ME",
+  semester: 2,
+  mobile: 9000000005
+});
+
+// Second insert with same _id (will FAIL — expected)
+db.students.insertOne({
+  _id: ObjectId("64abc123456789abcdef0001"),
+  name: "Ritika Malhotra",
+  department: "ME",
+  semester: 2,
+  mobile: 9000000006
+});
+
+// ----------------------------
+// Exercise 7: Multiple Inserts using insert()
+// ----------------------------
+
+db.subjects.insert({
+  course_name: "BCA",
+  subject_list: ["C", "C++", "Java"]
+});
+
+db.subjects.insert({
+  course_name: "MCA",
+  subject_list: ["Python", "ML", "Cloud"]
+});
+
+db.subjects.insert({
+  course_name: "BSc IT",
+  subject_list: ["Maths", "Statistics", "R Programming"]
+});
